@@ -1,0 +1,24 @@
+---
+# tasks file for desktop
+# - name: check software
+#   command: "{{ ansible_pkg_mgr }} grouplist installed"
+#   args:
+#     warn: no
+#   register: desktop_check_software
+#   changed_when: no
+# 
+# - name: install software
+#   command: "{{ ansible_pkg_mgr }} groupinstall {{ desktop_installation_options }} {{ item }}"
+#   args:
+#     warn: no
+#   loop: "{{ desktop_software }}"
+#   when:
+#     - item not in desktop_check_software.stdout
+#   register: desktop_install_software
+#   until: desktop_install_software is succeeded
+#   retries: 3
+
+- name: install software
+  yum:
+    name: "{{ desktop_software }}"
+    state: present

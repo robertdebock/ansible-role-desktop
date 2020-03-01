@@ -1,0 +1,7 @@
+---
+# vars file for desktop
+_desktop_software:
+  gnome:
+    '7': "@^gnome-desktop-environment"
+
+desktop_software: "{{ _desktop_software[desktop][ansible_distribution_major_version] }}"

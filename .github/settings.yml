@@ -1,0 +1,7 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install one of the many desktop environments.
+  homepage: https://robertdebock.nl/
