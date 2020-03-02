@@ -5,7 +5,7 @@ Install one of the many desktop environments.
 
 |Travis|GitHub|Quality|Downloads|
 |------|------|-------|---------|
-|[![travis](https://travis-ci.org/robertdebock/ansible-role-desktop.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-desktop)|[![github](https://github.com/robertdebock/ansible-role-desktop/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-desktop/actions)|![quality](https://img.shields.io/ansible/quality/)|![downloads](https://img.shields.io/ansible/role/d/)|
+|[![travis](https://travis-ci.org/robertdebock/ansible-role-desktop.svg?branch=master)](https://travis-ci.org/robertdebock/ansible-role-desktop)|[![github](https://github.com/robertdebock/ansible-role-desktop/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-desktop/actions)|![quality](https://img.shields.io/ansible/quality/46926)|![downloads](https://img.shields.io/ansible/role/d/46926)|
 
 Example Playbook
 ----------------
@@ -56,6 +56,8 @@ These variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for desktop
+
+# What desktop to use. Currently only "gnome" is supported.
 desktop: gnome
 ```
 
@@ -89,7 +91,8 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tags|
 |---------|----|
-|el|7|
+|el|7, 8|
+|fedora|all|
 
 The minimum version of Ansible required is 2.7 but tests have been done to:
 

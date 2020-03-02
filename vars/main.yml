@@ -2,8 +2,13 @@
 # vars file for desktop
 _desktop_software:
   gnome:
-    '7':
+    CentOS-7:
       - "@^gnome-desktop-environment"
       - xorg-x11-fonts-Type1
+    # package coreutils-8.30-6.el8.x86_64 conflicts with coreutils-single provided by coreutils-single-8.30-6.el8.x86_64
+    # CentOS-8:
+    #   - "@Server with GUI"
+    Fedora:
+      - "@Basic Desktop"
 
-desktop_software: "{{ _desktop_software[desktop][ansible_distribution_major_version] }}"
+desktop_software: "{{ _desktop_software[desktop][ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_desktop_software[desktop][ansible_distribution]) }}"

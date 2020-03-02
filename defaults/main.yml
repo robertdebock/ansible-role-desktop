@@ -1,3 +1,5 @@
 ---
 # defaults file for desktop
+
+# What desktop to use. Currently only "gnome" is supported.
 desktop: gnome
