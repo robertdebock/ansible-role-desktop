@@ -57,7 +57,7 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for desktop
 
-# What desktop to use. Currently only "gnome" is supported.
+# What desktop to use. Either "gnome" or "i3"
 desktop: gnome
 ```
 

@@ -1,5 +1,8 @@
 ---
 # vars file for desktop
+
+# This structure maps the desktop specified in `defaults/main.yml` to
+# distribution and optional version.
 _desktop_software:
   gnome:
     CentOS-7:
@@ -10,5 +13,8 @@ _desktop_software:
     #   - "@Server with GUI"
     Fedora:
       - "@Basic Desktop"
+  i3:
+    Fedora:
+      - i3
 
 desktop_software: "{{ _desktop_software[desktop][ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_desktop_software[desktop][ansible_distribution]) }}"
