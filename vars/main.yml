@@ -14,6 +14,8 @@ _desktop_software:
     Fedora:
       - "@Basic Desktop"
   i3:
+    CentOS-7:
+      - i3
     Fedora:
       - i3
 
