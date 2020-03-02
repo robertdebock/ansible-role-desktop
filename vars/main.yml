@@ -2,6 +2,8 @@
 # vars file for desktop
 _desktop_software:
   gnome:
-    '7': "@^gnome-desktop-environment"
+    '7':
+      - "@^gnome-desktop-environment"
+      - xorg-x11-fonts-Type1
 
 desktop_software: "{{ _desktop_software[desktop][ansible_distribution_major_version] }}"
