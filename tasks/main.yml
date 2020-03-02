@@ -1,7 +1,7 @@
 ---
 # tasks file for desktop
 - name: install software
-  yum:
+  package:
     name: "{{ desktop_software }}"
     state: present
   register: desktop_install_software
