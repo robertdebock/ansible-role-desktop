@@ -3,14 +3,18 @@
 
 # This structure maps the desktop specified in `defaults/main.yml` to
 # distribution and optional version.
+# Some distributions use the Ansible `package` module, others can't and use the
+# Ansible module `dnf` or `yum` to install packages.
+# The Ansible `package` module uses an `@` to indicate groups. That `@` is not
+# required when using `dnf groupinstall`.
+
 _desktop_software:
   gnome:
     CentOS-7:
       - "@^gnome-desktop-environment"
       - xorg-x11-fonts-Type1
-    # package coreutils-8.30-6.el8.x86_64 conflicts with coreutils-single provided by coreutils-single-8.30-6.el8.x86_64
-    # CentOS-8:
-    #   - "@Server with GUI"
+    CentOS-8:
+      - "Server with GUI"
     Fedora:
       - "Basic Desktop"
   i3:
@@ -23,6 +27,7 @@ desktop_software: "{{ _desktop_software[desktop][ansible_distribution ~ '-' ~ an
 
 _desktop_installation_method:
   default: package
+  CentOS-7: manual
   Fedora: manual
 
-desktop_installation_method: "{{ _desktop_installation_method[ansible_distribution] | default(_desktop_installation_method['default']) }}"
+desktop_installation_method: "{{ _desktop_installation_method[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_desktop_installation_method[ansible_distribution] | default(_desktop_installation_method['default'])) }}"
