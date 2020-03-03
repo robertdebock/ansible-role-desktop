@@ -11,7 +11,7 @@
     - desktop_installation_method == "package"
 
 - name: install software manually
-  command: dnf groupinstall --allowerasing --assumeyes "{{ item }}"
+  command: "{{ ansible_pkg_mgr }}" groupinstall --allowerasing --assumeyes "{{ item }}"
   loop: "{{ desktop_software }}"
   register: desktop_install_software_manually
   until: desktop_install_software_manually is succeeded
@@ -19,3 +19,4 @@
   changed_when: "'Installed:' in desktop_install_software_manually.stdout"
   when:
     - desktop_installation_method == "manual"
+    - ansible_pkg_mgr in ["dnf", "yum"]
