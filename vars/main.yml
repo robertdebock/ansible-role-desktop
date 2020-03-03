@@ -1,33 +1,24 @@
 ---
 # vars file for desktop
 
-# This structure maps the desktop specified in `defaults/main.yml` to
-# distribution and optional version.
-# Some distributions use the Ansible `package` module, others can't and use the
-# Ansible module `dnf` or `yum` to install packages.
-# The Ansible `package` module uses an `@` to indicate groups. That `@` is not
-# required when using `dnf groupinstall`.
+# Some packages need to be installed using the `command` module, because
+# the `yum` module is missing a parameter `allowerasing`. to install
+# an item with command, add `module: command` to the item.
 
 _desktop_software:
   gnome:
     CentOS-7:
-      - "@^gnome-desktop-environment"
-      - xorg-x11-fonts-Type1
+      - name: "@^gnome-desktop-environment"
+      - name: xorg-x11-fonts-Type1
     CentOS-8:
-      - "Server with GUI"
+      - name: Server with GUI
+        module: command
     Fedora:
-      - "Fedora Workstation"
+      - name: "@GNOME"
   i3:
     CentOS-7:
-      - i3
+      - name: i3
     Fedora:
-      - i3
+      - name: i3
 
 desktop_software: "{{ _desktop_software[desktop][ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_desktop_software[desktop][ansible_distribution]) }}"
-
-_desktop_installation_method:
-  default: package
-  CentOS-8: manual
-  Fedora: manual
-
-desktop_installation_method: "{{ _desktop_installation_method[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_desktop_installation_method[ansible_distribution] | default(_desktop_installation_method['default'])) }}"

@@ -2,16 +2,18 @@
 # tasks file for desktop
 - name: install software
   package:
-    name: "{{ desktop_software }}"
+    name: "{{ item.name }}"
     state: present
+  loop: "{{ desktop_software }}"
   register: desktop_install_software
   until: desktop_install_software is succeeded
   retries: 3
   when:
-    - desktop_installation_method == "package"
+    - item.module != "command"
 
+# Work around the missing parameter `allowerasing` for `yum`.
 - name: install software manually
-  command: "{{ ansible_pkg_mgr }} groupinstall --allowerasing --assumeyes '{{ item }}'"
+  command: "{{ ansible_pkg_mgr }} groupinstall --allowerasing --assumeyes '{{ item.name }}'"
   args:
     warn: no
   loop: "{{ desktop_software }}"
@@ -20,5 +22,5 @@
   retries: 3
   changed_when: "'Installed:' in desktop_install_software_manually.stdout"
   when:
-    - desktop_installation_method == "manual"
     - ansible_pkg_mgr in ["dnf", "yum"]
+    - item.module == "command"
