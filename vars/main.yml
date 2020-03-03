@@ -16,7 +16,7 @@ _desktop_software:
     CentOS-8:
       - "Server with GUI"
     Fedora:
-      - "Basic Desktop"
+      - "Fedora Workstation"
   i3:
     CentOS-7:
       - i3
