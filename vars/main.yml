@@ -12,7 +12,7 @@ _desktop_software:
     # CentOS-8:
     #   - "@Server with GUI"
     Fedora:
-      - "@Basic Desktop"
+      - "Basic Desktop"
   i3:
     CentOS-7:
       - i3
@@ -20,3 +20,9 @@ _desktop_software:
       - i3
 
 desktop_software: "{{ _desktop_software[desktop][ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_desktop_software[desktop][ansible_distribution]) }}"
+
+_desktop_installation_method:
+  default: package
+  Fedora: manual
+
+desktop_installation_method: "{{ _desktop_installation_method[ansible_distribution] | default(_desktop_installation_method['default']) }}"
