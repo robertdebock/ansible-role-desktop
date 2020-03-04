@@ -5,6 +5,8 @@
     name: "{{ item.name }}"
     state: present
   loop: "{{ desktop_software }}"
+  loop_control:
+    label: "{{ item.name }}"
   register: desktop_install_software
   until: desktop_install_software is succeeded
   retries: 3
@@ -18,6 +20,8 @@
   args:
     warn: no
   loop: "{{ desktop_software }}"
+  loop_control:
+    label: "{{ item.name }}"
   register: desktop_install_software_manually
   until: desktop_install_software_manually is succeeded
   retries: 3
