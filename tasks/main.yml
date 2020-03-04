@@ -9,7 +9,8 @@
   until: desktop_install_software is succeeded
   retries: 3
   when:
-    - item.module != "command"
+    - item.module is not defined or
+      item.module != "command"
 
 # Work around the missing parameter `allowerasing` for `yum`.
 - name: install software manually
@@ -23,4 +24,5 @@
   changed_when: "'Installed:' in desktop_install_software_manually.stdout"
   when:
     - ansible_pkg_mgr in ["dnf", "yum"]
+    - item.module is defined
     - item.module == "command"

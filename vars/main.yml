@@ -14,7 +14,9 @@ _desktop_software:
       - name: Server with GUI
         module: command
     Fedora:
-      - name: "@GNOME"
+      - name: Fedora Workstation
+        module: command
+      - name: "@Fonts"
   i3:
     CentOS-7:
       - name: i3
