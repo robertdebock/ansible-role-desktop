@@ -4,7 +4,6 @@
 # Some packages need to be installed using the `command` module, because
 # the `yum` module is missing a parameter `allowerasing`. to install
 # an item with command, add `module: command` to the item.
-
 _desktop_software:
   gnome:
     CentOS-7:
@@ -17,10 +16,15 @@ _desktop_software:
       - name: Fedora Workstation
         module: command
       - name: "@Fonts"
+      - name: dbus-x11
   i3:
     CentOS-7:
       - name: i3
     Fedora:
       - name: i3
+  mate:
+    Fedora:
+      - name: Mate Desktop
+        module: command
 
 desktop_software: "{{ _desktop_software[desktop][ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_desktop_software[desktop][ansible_distribution]) }}"
