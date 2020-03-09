@@ -10,13 +10,16 @@ _desktop_software:
       - name: "@^gnome-desktop-environment"
       - name: xorg-x11-fonts-Type1
     CentOS-8:
-      - name: Server with GUI
+      - name: Workstation
         module: command
     Fedora:
       - name: Fedora Workstation
         module: command
       - name: "@Fonts"
       - name: dbus-x11
+    Ubuntu:
+      - name: gnome-session
+      - name: gdm3
   i3:
     CentOS-7:
       - name: i3
