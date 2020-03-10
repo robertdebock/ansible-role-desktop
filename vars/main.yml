@@ -20,6 +20,7 @@ _desktop_software:
     Ubuntu:
       - name: gnome-session
       - name: gdm3
+      - name: session-migration
   i3:
     CentOS-7:
       - name: i3
