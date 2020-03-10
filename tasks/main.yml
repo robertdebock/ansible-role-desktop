@@ -15,6 +15,13 @@
       item.module != "command"
 
 # Work around the missing parameter `allowerasing` for `yum`.
+- name: import RPM key
+  rpm_key:
+    key: /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+    state: present
+  when:
+    - ansible_distribution == "CentOS"
+
 - name: install software manually
   command: "{{ ansible_pkg_mgr }} groupinstall --allowerasing --assumeyes '{{ item.name }}'"
   args:
