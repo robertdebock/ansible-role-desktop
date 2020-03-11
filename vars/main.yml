@@ -29,8 +29,8 @@ _desktop_software:
       - name: i3
   mate:
     CentOS: &mate-rhelish
-      - name: Mate Desktop
-        module: command
+      - name: "@^Mate Desktop"
+        # module: command
     Debian: &mate-debianish
       - name: mate-desktop
       - name: mate-hud
