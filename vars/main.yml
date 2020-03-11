@@ -16,8 +16,8 @@ _desktop_software:
       - name: gnome-session
       - name: gdm3
       - name: session-migration
-    RedHat-7: *&rhelish-7
-    RedHat-8: *&rhelish-8
+    RedHat-7: *rhelish-7
+    RedHat-8: *rhelish-8
     Fedora:
       - name: Fedora Workstation
         module: command
