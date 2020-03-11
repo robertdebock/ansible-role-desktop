@@ -6,29 +6,26 @@
 # an item with command, add `module: command` to the item.
 _desktop_software:
   gnome:
-    CentOS-7:
+    CentOS-7: &rhelish-7
       - name: "@^gnome-desktop-environment"
       - name: xorg-x11-fonts-Type1
-    CentOS-8:
+    CentOS-8: &rhelish-8
       - name: Workstation
         module: command
-    Debian:
+    Debian: &debianish
       - name: gnome-session
       - name: gdm3
       - name: session-migration
+    RedHat-7: *&rhelish-7
+    RedHat-8: *&rhelish-8
     Fedora:
       - name: Fedora Workstation
         module: command
       - name: "@Fonts"
       - name: dbus-x11
-    Ubuntu:
-      - name: gnome-session
-      - name: gdm3
-      - name: session-migration
+    Ubuntu: *debianish
   i3:
-    CentOS-7:
-      - name: i3
-    Fedora:
+    default:
       - name: i3
   mate:
     Fedora:
