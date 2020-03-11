@@ -32,6 +32,12 @@
   when:
     - ansible_distribution == "CentOS"
 
+- name: clean package cache
+  command: "{{ ansible_pkg_mgr }} clean all"
+  args:
+    warn: no
+  changed_when: no
+
 - name: install software manually
   command: "{{ ansible_pkg_mgr }} groupinstall --allowerasing --assumeyes '{{ item.name }}'"
   args:
