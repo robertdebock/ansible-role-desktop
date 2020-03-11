@@ -14,30 +14,6 @@
     - item.module is not defined or
       item.module != "command"
 
-# Work around the missing parameter `allowerasing` for `yum`.
-- name: import RPM key
-  block:
-    - name: CentOS 7
-      rpm_key:
-        key: "https://www.centos.org/keys/RPM-GPG-KEY-CentOS-7"
-        state: present
-      when:
-        - ansible_distribution_major_version == '7'
-    - name: CentOS 8
-      rpm_key:
-        key: "https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official"
-        state: present
-      when:
-        - ansible_distribution_major_version == '8'
-  when:
-    - ansible_distribution == "CentOS"
-
-- name: clean package cache
-  command: "{{ ansible_pkg_mgr }} clean all"
-  args:
-    warn: no
-  changed_when: no
-
 - name: install software manually
   command: "{{ ansible_pkg_mgr }} groupinstall --allowerasing --assumeyes '{{ item.name }}'"
   args:

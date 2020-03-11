@@ -6,30 +6,32 @@
 # an item with command, add `module: command` to the item.
 _desktop_software:
   gnome:
-    CentOS-7: &rhelish-7
+    CentOS-7: &gnome-rhelish-7
       - name: "@^gnome-desktop-environment"
       - name: xorg-x11-fonts-Type1
-    CentOS-8: &rhelish-8
+    CentOS-8: &gnome-rhelish-8
       - name: Workstation
         module: command
-    Debian: &debianish
+    Debian: &gnome-debianish
       - name: gnome-session
       - name: gdm3
       - name: session-migration
-    RedHat-7: *rhelish-7
-    RedHat-8: *rhelish-8
+    RedHat-7: *gnome-rhelish-7
+    RedHat-8: *gnome-rhelish-8
     Fedora:
       - name: Fedora Workstation
         module: command
       - name: "@Fonts"
       - name: dbus-x11
-    Ubuntu: *debianish
+    Ubuntu: *gnome-debianish
   i3:
     default:
       - name: i3
   mate:
-    Fedora:
+    Fedora: &mate-rhelish
       - name: Mate Desktop
         module: command
+    RedHat: *mate-rhelish
+    CentOS: *mate-rhelish
 
 desktop_software: "{{ _desktop_software[desktop][ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_desktop_software[desktop][ansible_distribution]) }}"
