@@ -20,6 +20,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.desktop
+      desktop: mate
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
