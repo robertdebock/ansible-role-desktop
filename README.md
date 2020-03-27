@@ -1,5 +1,7 @@
-desktop
-=========
+ARCHIVED - desktop
+==================
+
+NOTA BENE: This repository has been archived, no maintenance is being performed anymore. It's been replaced by [ansible-role-gnome](https://github.com/robertdebock/ansible-role-gnome), [ansible-role-mate](https://github.com/robertdebock/ansible-role-mate) and [ansible-role-i3](https://github.com/robertdebock/ansible-role-gnome).
 
 Install one of the many desktop environments.
 
